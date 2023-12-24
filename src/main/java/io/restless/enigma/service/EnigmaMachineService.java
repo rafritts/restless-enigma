@@ -7,21 +7,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
-public class EnigmaMachine {
-
-  public static final String CRIB = "LNXLWSOSBQ ";
+public class EnigmaMachineService {
 
   public String encodeMessage(String message, EnigmaSettings userSettings) {
     return encodeDecode(message, userSettings);
   }
 
-  public String encodeMessageWithCrib(String message, EnigmaSettings userSettings) {
-    message = CRIB + message;
+  public String encodeMessageWithDefaultCrib(String message, EnigmaSettings userSettings) {
+    message = DefaultEnigmaSettings.CRIB + message;
     return encodeDecode(message, userSettings);
   }
 
   public String decodeMessage(String message, EnigmaSettings userSettings) {
-    return encodeDecode(message, userSettings).replace(CRIB, "");
+    return encodeDecode(message, userSettings).replace(DefaultEnigmaSettings.CRIB, "");
   }
 
   private String encodeDecode(String message, EnigmaSettings userSettings) {

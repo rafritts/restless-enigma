@@ -10,14 +10,17 @@ import java.util.List;
 @Slf4j
 public class EnigmaUtil {
 
+    private static List<HashMap<Character, Character>> plugboardSettingsCache;
+
     public static List<HashMap<Character, Character>> generatePlugboardSettings() {
+        if (plugboardSettingsCache != null) return plugboardSettingsCache;
         List<HashMap<Character, Character>> allSettings = new ArrayList<>();
         List<Character[]> allPairs = generateLetterPairs();
         for (int numCables = 0; numCables <= EnigmaSettings.MAX_PLUBGBOARD_CABLES; numCables++) {
             allSettings.addAll(combinePairs(allPairs, numCables, 0, new HashMap<>()));
         }
-
-        return allSettings;
+        plugboardSettingsCache = allSettings;
+        return plugboardSettingsCache;
     }
 
     private static List<Character[]> generateLetterPairs() {

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebSocket Test</title>
+    <!-- Include SockJS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+</head>
+<body>
+<h1>WebSocket STOMP Test</h1>
+<button onclick="connect()">Connect</button>
+<button onclick="disconnect()">Disconnect</button>
+<div id="messages"></div>
+
+<script type="text/javascript">
+    var stompClient = null;
+
+    function connect() {
+        var socket = new SockJS('http://localhost:8081/bombe-status'); // Update with your WebSocket endpoint
+        stompClient = Stomp.over(socket);
+        stompClient.connect({}, function (frame) {
+            console.log('Connected: ' + frame);
+            stompClient.subscribe('/topic/bombe-status', function (message) {
+                showMessage(message.body);
+            });
+        });
+    }
+
+    function disconnect() {
+        if (stompClient !== null) {
+            stompClient.disconnect();
+        }
+        console.log("Disconnected");
+    }
+
+    function showMessage(message) {
+        var messagesDiv = document.getElementById('messages');
+        var messageDiv = document.createElement('div');
+        messageDiv.appendChild(document.createTextNode(message));
+        messagesDiv.appendChild(messageDiv);
+    }
+</script>
+</body>
+</html>

@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 public class DefaultEnigmaSettings {
 
+  public static final String CRIB = "LNXLWSOSBQ ";
+
   public EnigmaSettings getDefaultSettings() {
     EnigmaSettings defaultSettings = new EnigmaSettings();
     defaultSettings.setRotor1Position('G');
@@ -14,6 +16,8 @@ public class DefaultEnigmaSettings {
     plugboardSwaps.put('T', 'A');
     plugboardSwaps.put('E', 'L');
     plugboardSwaps.put('L', 'E');
+    // These extra plugboard swaps make the computational requirements
+    // to break enigma not feasible for a cloud demo app.
     //        plugboardSwaps.put('I', 'M');
     //        plugboardSwaps.put('M', 'I');
     //        plugboardSwaps.put('O', 'P');
