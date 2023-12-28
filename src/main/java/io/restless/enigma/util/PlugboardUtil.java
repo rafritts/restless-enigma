@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
-public class EnigmaUtil {
+public class PlugboardUtil {
 
     private static List<HashMap<Character, Character>> plugboardSettingsCache;
 
@@ -19,6 +19,7 @@ public class EnigmaUtil {
         for (int numCables = 0; numCables <= EnigmaSettings.MAX_PLUBGBOARD_CABLES; numCables++) {
             allSettings.addAll(combinePairs(allPairs, numCables, 0, new HashMap<>()));
         }
+
         plugboardSettingsCache = allSettings;
         return plugboardSettingsCache;
     }

@@ -1,5 +1,6 @@
 package io.restless.enigma.endpoints.model;
 
+import io.restless.enigma.model.BombeResultStatusEnum;
 import io.restless.enigma.model.EnigmaSettings;
 import lombok.Data;
 
@@ -10,4 +11,5 @@ public class BombeBreakResponse {
   EnigmaSettings settings;
   String numberOfAttempts;
   String elapsedTime;
+  BombeResultStatusEnum bombeResultStatus;
 }

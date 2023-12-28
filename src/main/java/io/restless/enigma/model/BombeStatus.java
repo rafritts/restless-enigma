@@ -7,6 +7,7 @@ import lombok.Data;
 @Builder
 public class BombeStatus {
 
+    BombeInternalStatusEnum internalStatus;
     EnigmaSettings currentSetting;
     String numberOfAttempts;
     String elapsedTime;

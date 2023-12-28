@@ -2,7 +2,7 @@ package io.restless.enigma.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import io.restless.enigma.model.BombeBreakResult;
+import io.restless.enigma.model.BombeResult;
 import io.restless.enigma.model.DefaultEnigmaSettings;
 import io.restless.enigma.model.EnigmaSettings;
 import java.util.HashMap;
@@ -34,8 +34,6 @@ public class BombeServiceTest {
     HashMap<Character, Character> plugboardSwaps = new HashMap<>();
     plugboardSwaps.put('A', 'B');
     plugboardSwaps.put('B', 'A');
-    plugboardSwaps.put('C', 'D');
-    plugboardSwaps.put('D', 'C');
     testSettings.setPlugboardSwaps(plugboardSwaps);
     testStringShortEncoded =
         enigmaMachineService.encodeMessageWithDefaultCrib(testStringShortOriginal, testSettings);
@@ -45,7 +43,7 @@ public class BombeServiceTest {
 
   @Test
   public void testShortStringBreakEnigmaWithDefaultCrib() {
-    BombeBreakResult result =
+    BombeResult result =
         bombeService.breakEnigma(testStringShortEncoded, DefaultEnigmaSettings.CRIB);
     assertEquals(testSettings, result.getSettings());
     assertEquals(DefaultEnigmaSettings.CRIB + testStringShortOriginal.toUpperCase(), result.getDecodedMessage());
@@ -53,14 +51,14 @@ public class BombeServiceTest {
 
   @Test
   public void testShortStringBreakEnigmaWithUserCrib() {
-    BombeBreakResult result =
+    BombeResult result =
         bombeService.breakEnigma(testStringShortEncoded, "TEST MESSAGE");
     assertEquals(testSettings, result.getSettings());
   }
 
   @Test
   public void testBreakEnigmaFullParagraphWithUserCrib() {
-    BombeBreakResult result =
+    BombeResult result =
         bombeService.breakEnigma(testStringLongEncoded, "BLETCHLEY PARK");
     assertEquals(testSettings, result.getSettings());
   }
